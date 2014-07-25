@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AgriViz</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+    </script>
+
+</head>
+<body>
+
+
+    <!-- Put the code for the navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('loginPage')}}">AgriViz</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href=" {{ url_for('contactUs') }} ">CONTACT US</a></li>
+                <li><a href=" {{ url_for('aboutUs') }} ">ABOUT US</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-lg-10">
+           <form class="form-horizontal" method="post" action="" id="contactFrom">
+               <fieldset>
+                   <legend>Drop Us a Line</legend>
+                   <div class="form-group">
+                       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                       <div class="col-lg-10">
+                           <input type="text" name="email" class="form-control" id="inputEmail"
+                                  placeholder="Email" form="contactForm"/>
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="inputEmail" class="col-lg-2 control-label">Message</label>
+                       <div class="col-lg-10">
+                           <textarea name="message" class="form-control" form="contactForm"></textarea>
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="inputEmail" class="col-lg-2 control-label"></label>
+                       <div class="col-lg-10">
+                           <button type="submit" class="btn btn-primary">Submit</button>
+                       </div>
+                   </div>
+
+                   
+               </fieldset>
+           </form>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</body>
+</html>

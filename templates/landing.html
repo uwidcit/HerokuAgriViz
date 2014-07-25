@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AgriViz</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+    </script>
+</head>
+<body>
+
+    <!-- Put the code for the navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('loginPage')}}">AgriViz</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li><a href=" {{ url_for('contactUs') }} ">CONTACT US</a></li>
+                <li><a href=" {{ url_for('aboutUs') }} ">ABOUT US</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+
+        <div class="omb_login">
+            <h3 class="omb_authTitle">Login</h3>
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                <div class="col-xs-10 col-sm-5">
+                    <a href="/login/google/" class="btn btn-lg btn-block omb_btn-google">
+                        <i class="fa fa-google-plus visible-xs"></i>
+                        <span class="hidden-xs">Google+</span>
+                    </a>
+                </div>
+                
+            </div>
+
+            
+            
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>AGRINeTT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/contour.min.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/lodash.js"></script>
+        <script src="js/contour.min.js"></script>
+        <script srv="line_chart.js"></script>
+        
+    </head>
+    
+    <body>
+        
+        <aside>
+            <ul id="crop_list">
+                <li> Crop 1</li>
+                <li> Crop 2</li>
+            </ul>
+        </aside>
+        
+        <script>
+        
+            var info_loc = 'http://localhost:5000/crops/daily/commodity/carrot'
+            var data = null
+            console.log('starting to run the programme.....')
+            var xhr = new XMLHttpRequest()
+            var prepare_data = function(str)
+            {
+                data = eval(str)
+                return data
+            }
+
+            var extract_data = function(data)
+            {
+                var chart_data = new Array()
+                for (var i = 0; i < data.length ; i++)
+                {
+                    var x_val = new Date(data[i].date)
+                    var y_val = data[i].mean 
+                    var obj = {x : x_val, y : y_val}
+                    console.log(obj)
+                    chart_data.push(obj)
+                }
+                return chart_data
+            }
+            
+            
+            console.log('Beginning to send the request.....')
+
+
+
+
+
+
+
+            xhr.onreadystatechange = function()
+            {
+                if(xhr.readyState == 4)
+                {
+                    
+                    console.log('Date received')
+                    console.log(xhr.responseText)
+                    data = prepare_data(xhr.responseText)
+                    console.log('Data parsed')
+                    console.log(data)
+                    data = extract_data(data)
+                    console.log('Extraction successful')
+                    console.log(data)
+                    console.log('creating plot')
+                    
+                    var chrt = new Contour({el : '.myFirstChart', yAxis : {title : 'Price'}, xAxis: {linearDomain : true, maxTicks : 12}}).cartesian().line(data).tooltip().render()
+
+                    console.log('Plot created')
+        
+                }
+            }
+
+            xhr.open('GET', info_loc, true)
+            xhr.send()
+            
+            
+        
+        </script>
+        
+        
+        <div class="myFirstChart" id='chart_box'>
+            
+        </div>
+        
+        
+        
+       
+            
+
+        
+        
+    </body>
+
+</html>

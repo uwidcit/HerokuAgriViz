@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AgriViz</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-markdown.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/comment.box.css')}}" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-sanitize.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/stock/highcharts-more.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/lodash.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/checklist-model.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-markdown.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/plottingModels.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/markdown.js')}}"></script>
+</head>
+<body ng-app="chartingApp">
+
+    <div class="navbar navbar-default"
+         ng-controller="ChartModelController">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('loginPage')}}">AgriViz</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li><a href=" {{ url_for('contactUs') }} ">CONTACT US</a></li>
+                <li><a href=" {{ url_for('aboutUs') }} ">ABOUT US</a></li>
+                <li ng-class="{active : isActive('line')}"><a href="" ng-click="selectChartingModel('line')">LINE CHART</a></li>
+                <li ng-class="{active : isActive('bar')}"><a href="" ng-click="selectChartingModel('bar')">BAR CHART</a></li>
+                <!--  <li ng-class="{active : isActive('box')}"><a href="" ng-click="selectChartingModel('box')">BOX PLOT</a></li> -->
+                <li ng-class="{active : isActive('bubble')}"><a href="" ng-click="selectChartingModel('bubble')">BUBBLE CHART</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div>
+        <div ng-controller="ChartingController">
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <nav class="nav-sidebar">
+                            <ul class="nav tabs">
+                                {% raw %}
+                                <li>
+                                    Search:
+                                </li>
+
+                                <li>
+                                    <input ng-model="query" />
+                                </li>
+                                <li id="{{crop}}" ng-class="{active : isActive(crop)}"
+                                    ng-repeat="crop in crops | filter:query">
+
+                                    <a href="" ng-click="handleClick(crop)">
+                                        {{crop}}
+                                    </a>
+                                </li>
+                                {% endraw %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <div>
+                        <div id="chartContainer" class="col-sm-5" style="height:600px">
+                            <h3> Loading.... </</h3>
+                        </div>
+
+                        {% raw %}
+                        <div id="annotationsContainer" ng-controller="AnnotationController" class="col-sm-4">
+
+                            <div class="list-group">
+                                <div id="annotations">
+                                    <div class="list-group-item" ng-repeat="comment in comments">
+                                        <div class="commenterImage" ng-show="comment.showImage">
+                                            <img ng-src="{{comment.image}}"/>
+                                        </div>
+                                        <h4 class="list-group-item-heading">
+                                            {{comment.author}}
+                                        </h4>
+                                        <div ng-bind-html="comment.comment"
+                                                 ng-style="{'color': annotationColors[comment.commodity]}"
+                                             style="font-size:large">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="annotationForm">
+                                <form ng-submit="submitAnnotation()">
+                                    <label ng-repeat="c in annotationCrops">
+                                        <input type="checkbox" checklist-model="checkedCrops.crops"
+                                               checklist-value="c" /> {{c}}
+                                    </label>
+                                    
+                                    <textarea id="commentEditor" name="userComment" cols="43" data-provide="markdown"></textarea>
+                                    <input type="submit" value="Submit" />
+                                </form>
+                                <span id="error"></span>
+                            </div>
+                        </div>
+                        {% endraw %}
+                    </div>
+
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="username" hidden="hidden">{{name}}</p>
+    <p id="image" hidden="hidden">{{image}}</p>
+
+</body>
+</html>

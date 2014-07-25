@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AgriViz</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+        </script>
+
+</head>
+<body>
+
+
+    <!-- Put the code for the navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('loginPage')}}">AgriViz</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li><a href=" {{ url_for('contactUs') }} ">CONTACT US</a></li>
+                <li class="active"><a href=" {{ url_for('aboutUs') }} ">ABOUT US</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-lg-8">
+            <blockquote>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida erat eget luctus dignissim. Donec lacinia est id erat bibendum, eget tincidunt risus pretium. Praesent eget venenatis purus. Morbi nec nulla non turpis porttitor congue ut cursus diam. Sed a metus ultrices, mollis ipsum vel, convallis ligula. Morbi accumsan eros non tellus semper, at hendrerit urna fringilla. Maecenas volutpat eros diam, ut pulvinar massa pharetra eu. Nam lobortis erat lorem, ut scelerisque mauris fermentum sed. Phasellus diam tellus, vehicula quis nibh eget, dapibus molestie libero. Donec rhoncus placerat odio, eu tristique enim volutpat quis. Donec justo diam, lobortis vitae risus eget, gravida imperdiet velit. Etiam sit amet purus vitae diam pharetra egestas. Suspendisse pellentesque et sem vitae porttitor.
+
+                Nulla interdum orci malesuada egestas lobortis. Donec tincidunt leo ac iaculis consectetur. Nunc blandit urna vel auctor varius. Nulla sodales felis nec sem consectetur tempor. Maecenas non enim porttitor, ornare erat ut, malesuada purus. Curabitur at odio placerat, molestie urna vel, cursus est. Vestibulum quis condimentum tortor. Etiam aliquam nisi cursus rhoncus pellentesque. Nulla lobortis libero arcu, interdum rutrum lectus pretium nec. Nullam eget purus est. Suspendisse ut odio id lectus ullamcorper porta in ac tellus. Aliquam ut nulla quam. Sed convallis tellus in accumsan lobortis. Donec tempor vitae quam sed interdum.
+            </blockquote>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</body>
+</html>

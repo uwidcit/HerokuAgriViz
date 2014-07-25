@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>AGRINeTT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/contour.min.css">
+        <link rel=stylesheet href="css/nvd3.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.v3.js"></script>
+    </head>
+    
+    <body>
+        
+        
+        <script>
+            
+            
+            var location = 'http://127.0.0.1:5000/crops/monthly/2014-04-01T00:00:00'
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function()
+            {
+                if(xhr.readyState == 4)
+                {
+                    console.log('Preparing to plot data')
+                    var txt = xhr.responseText
+                    var recieved_data = eval(txt)
+                    var data = new Array()
+                    
+                    for(var i = 0; i < recieved_data.length; i++)
+                    {
+                        data.push({value : recieved_data[i].mean, label : recieved_data[i].commodity})
+                        console.log({value : recieved_data[i].mean, label : recieved_data[i].commodity})
+                    }
+                    
+                    nv.addGraph(function()
+                    {
+                        console.log("preparing chart.....")
+                        var chart = nv.models.pieChart()
+                        .x(function(d) {return d.label})
+                        .y(function(d) {return d.value})
+                        .showLabels(true);
+                        
+                        d3.select(".myFirstChart")
+                        .datum(data)
+                        .transition().duration(350)
+                        .call(chart)
+                        return chart
+                        
+                        
+                        
+                    })
+                }
+            }
+        
+           
+`     
+            xhr.open('GET', location, true)
+            xhr.send()
+            
+            
+        
+        </script>
+        
+        
+        <div class="myFirstChart" id='chart_box'>
+            
+        </div>
+        
+        
+        
+       
+            
+
+        
+        
+    </body>
+
+</html>
