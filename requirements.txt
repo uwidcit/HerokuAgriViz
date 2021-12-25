@@ -12,7 +12,7 @@ jsonschema==2.3.0
 pusher==0.8
 pymongo==2.7.1
 python-openid==2.2.5
-requests==2.2.1
+requests==2.20.0
 six==1.7.2
 wsgiref==0.1.2
 xlrd==0.9.3
