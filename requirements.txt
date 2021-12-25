@@ -4,7 +4,7 @@ Flask-Login==0.2.11
 Flask-OpenID==1.2.1
 Flask-PyMongo==0.3.0
 Flask-Triangle==0.5.4
-Jinja2==2.7.3
+Jinja2==2.11.3
 MarkupSafe==0.23
 Werkzeug==0.9.6
 itsdangerous==0.24
